@@ -116,13 +116,13 @@ class TweetAnalyzer():
         return df
 
 
-if __name__ == '__main__':
+def main():
     twitter_client = TwitterClient()
     tweet_analyzer = TweetAnalyzer()
 
     api = twitter_client.get_twitter_client_api()
 
-    tweets = api.user_timeline(screen_name="realDonaldTrump", count=20)
+    tweets = api.user_timeline(screen_name="KevinVuong5", count=20)
 
     # print(dir(tweets[0]))
     # print(tweets[0].retweet_count)
@@ -130,10 +130,13 @@ if __name__ == '__main__':
     df = tweet_analyzer.tweets_to_data_frame(tweets)
 
     # Get average length over all tweets:
-    print(np.mean(df['len']))
+    print(f"Average tweet length: {np.mean(df['len'])}")
 
     # Get the number of likes for the most liked tweet:
-    print(np.max(df['likes']))
+    print(f"Number of likes for most liked tweet: {np.max(df['likes'])}")
 
     # Get the number of retweets for the most retweeted tweet:
-    print(np.max(df['retweets']))
+    print(f"Number of retweets: {np.max(df['retweets'])}")
+
+
+main()
